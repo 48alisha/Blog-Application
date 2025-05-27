@@ -1,4 +1,5 @@
 import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
 
 export const apiResponse = (res, status, type, message, data = null) => {
   if (type === "success") {
@@ -18,4 +19,14 @@ export const apiResponse = (res, status, type, message, data = null) => {
 
 export const hashPassword = async (password) => {
   return await bcrypt.hash(password, 10);
+};
+
+export const comparePassword = async (plainPassword, hashedPassword) => {
+  return await bcrypt.compare(plainPassword, hashedPassword);
+};
+
+export const generateToken = (data) => {
+  return jwt.sign(data, process.env.JWT_SECRET, {
+    expiresIn: process.env.JWT_EXPIRES_IN,
+  });
 };
