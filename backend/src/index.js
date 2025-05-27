@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import morgan from "morgan";
 import MongoConnection from "./config/db.js";
 import authRoutes from "./routes/auth.js";
+import postRoutes from "./routes/post.js";
 
 dotenv.config({
   path: process.cwd() + "/.env",
@@ -20,6 +21,7 @@ app.use(express.json());
 
 // Routes:
 app.use("/api/v1/auth", authRoutes);
+app.use("/api/v1/post", postRoutes);
 
 app.listen(port, () => {
   console.log(`Server is started on PORT::${port}`);
