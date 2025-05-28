@@ -9,7 +9,7 @@ const protect = async (req, res, next) => {
       return apiResponse(res, 401, "error", "User not authorized!");
     }
 
-    const decodedToken = jwt.verify(socialbuzzy, process.env.JWT_SECRET);
+    const decodedToken = jwt.verify(blog_application, process.env.JWT_SECRET);
     req.user = decodedToken;
     next();
   } catch (err) {
